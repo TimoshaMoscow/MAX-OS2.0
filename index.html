@@ -1798,6 +1798,10 @@
             border-color: #4ecdc4 !important;
             box-shadow: 0 0 30px rgba(78, 205, 196, 0.3) !important;
         }
+
+        #notificationPanel.hidden {
+            display: none !important;
+        }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -2460,23 +2464,20 @@
             }
         }
 
-        // ШТОРКА
-        function togglePanel() {
-            const panel = document.getElementById('notificationPanel');
-            const button = document.getElementById('showPanel');
-            
-            if (panel.style.top === '20px') {
-                panel.style.top = '-500px';
-                button.innerHTML = '<i class="fas fa-chevron-up"></i>';
-                button.classList.remove('active');
-            } else {
-                panel.style.top = '20px';
-                button.innerHTML = '<i class="fas fa-chevron-down"></i>';
-                button.classList.add('active');
-                updateNotificationsList();
-                updateNotificationCount();
-            }
-        }
+function togglePanel() {
+    const panel = document.getElementById('notificationPanel');
+    const button = document.getElementById('showPanel');
+    
+    if (panel.classList.contains('hidden')) {
+        panel.classList.remove('hidden');
+        panel.style.top = '20px';
+        button.innerHTML = '<i class="fas fa-chevron-down"></i>';
+    } else {
+        panel.classList.add('hidden');
+        panel.style.top = '-500px';
+        button.innerHTML = '<i class="fas fa-chevron-up"></i>';
+    }
+}
 
         // ЗАГРУЗКА НАСТРОЕК
         function loadSettings() {
@@ -3903,3 +3904,4 @@
     </script>
 </body>
 </html>
+
